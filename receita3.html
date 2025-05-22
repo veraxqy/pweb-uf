@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Receita 3</title>
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+            #div-cervejas {
+                width: 100%;
+                height: 100px;
+                background-color: lightblue;
+                text-align: center;
+                padding-top: 30px;
+                /* Ex 3. */
+                opacity: 0;
+                transition: opacity 1000ms;
+            }
+            #div-cervejas.show {
+                opacity: 1;
+            }
+            #div-botao {
+                text-align: center;
+            }
+            #botao {
+                padding: 10px 20px;
+                background-color: lightcoral;
+                border: none;
+                color: white;
+                font-size: 16px;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Ex 1. -->
+        <div id="div-cervejas"></div>
+        <div id="div-botao"><button id="botao">Carregar Cervejas</button></div>
+    </body>
+
+    <script>
+        function carregarDiv(){
+            let div = document.getElementById("div-cervejas")
+            // Ex 3.
+            div.style.opacity = "1"
+            div.innerHTML = `<h1>Brahma Duplo Malte</h1>`
+            return botao.onclick = apagarDiv
+        }
+
+        // Ex 2.
+        function apagarDiv(){
+            let div = document.getElementById("div-cervejas")
+            div.innerHTML = ``
+            return botao.onclick = carregarDiv
+        }
+
+        let botao = document.getElementById("div-botao")
+        botao.onclick = carregarDiv
+    </script>
+</html>

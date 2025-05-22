@@ -1,0 +1,44 @@
+/* Receita 2 */
+/* Passo 3 */
+p {
+    color: green;
+}
+
+/* Passo 5 */
+p.verso {
+    color: maroon;
+}
+
+/* Ex 1. */
+p.mote {
+    color: red;
+}
+
+/* Ex 3. */
+a.link:hover {
+    color: blue;
+}
+
+a.link:visited {
+    color: brown;
+}
+
+/* Ex. 5 */
+img.imagem {
+    border-radius: 50%;
+}
+
+div.poeta {
+    display: flex;
+    gap: 10px;
+}
+
+/* Ex. 6 */
+div.poeta img {
+    border-radius: 50%;
+}
+
+/* Ex. 7 */
+table tr th {
+    background-color: lightblue;
+}

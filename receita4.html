@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Receita 4</title>
+    <style>
+        /* Ex. 2 */
+        .cerveja, tr, th, td {
+            background-color: coral;
+            color: white;
+            text-align: center;
+            border: 1px black solid;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+    <!-- Passo 1 -->
+    <div id="meu amor">
+        <button id="botaoCarregar">Carregando cervejas...</button>
+    </div>
+
+    <script>
+        let cervejas = ["Guinness", "Heineken", "Budweiser", "Corona", "Stella Artois"];
+        
+        // Passo 3
+        function transformar(item) {
+            // Ex. 1 e 2
+            //return `<div class="cerveja">${item}</div>`;
+
+            // Ex. 3
+            return `<tr><td>${item}</td></tr>`
+        }
+
+        function carregarDiv() {
+            let div = document.getElementById("meu amor");
+            // Passo 2 e 3
+            //let cervejasHtml = [`<h1>${cervejas[0]}</h1>`,`<h1>${cervejas[1]}</h1>`,`<h1>${cervejas[2]}</h1>`,`<h1>${cervejas[3]}</h1>`,`<h1>${cervejas[4]}</h1>`];
+            let cervejasHtml = cervejas.map(transformar);
+            // Ex. 3
+            div.innerHTML = `<table class="cerveja">
+                                <tr>
+                                    <th>Cerveja</th>
+                                </tr>
+                                ${cervejasHtml.join("\n")}
+                            </table>
+                            <!-- Ex. 4 -->
+                            <button id="ordenar">Ordenar Cervejas</button>
+                            <!-- Ex. 5 -->
+                            <button id="embaralhar">Embaralhar Cervejas</button>`;
+            // Ex. 4
+            let botaoOrdenar = document.getElementById("ordenar");
+            botaoOrdenar.addEventListener("click", ordenarCervejas);
+
+            // Ex. 5
+            let botaoEmbaralhar = document.getElementById("embaralhar");
+            botaoEmbaralhar.addEventListener("click", embaralharCervejas)
+        }
+
+        // Ex. 4
+        function ordenarCervejas() {
+            cervejas.sort();
+            carregarDiv();
+        }
+
+        // Ex. 5
+        function embaralharCervejas() {
+            let random = Math.floor(Math.random() * cervejas.length);
+            let cerveja = cervejas[random];
+            cervejas = cervejas.filter(item => item !== cerveja);
+            cervejas.push(cerveja);
+            carregarDiv();
+        }
+
+        let botao = document.getElementById("botaoCarregar");
+        botao.addEventListener("click", carregarDiv)
+    </script>
+</body>
+</html>

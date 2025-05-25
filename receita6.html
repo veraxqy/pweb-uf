@@ -1,0 +1,81 @@
+<!-- Passo 1 -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Receita 6</title>
+        <style>
+            /* Ex 2. */
+            .cerveja, tr, th, td {
+                background-color: coral;
+                color: white;
+                text-align: center;
+                border: 1px black solid;
+                border-collapse: collapse;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="cervejasDiv"></div>
+        <div><button id="botaoCarregar">Carregando Cervejas...</button></div>
+    </body>
+    <script>
+        // Passo 2, 3 e 4
+        // Ex 3.
+        let cervejas = [
+            { 
+                name:"Guiness",
+                alcohol: "10%",
+                style: "Pilsen",
+                ibu: "29"
+                /*toString: function(){
+                    return this.name
+                }*/
+            }, 
+            { 
+                name: "Desperados",
+                alcohol: "6%",
+                style: "Stout",
+                ibu: "56"
+                /*toString: function(){
+                    return this.name
+                }*/
+            }, 
+            {
+                name: "Becks",
+                alcohol: "5%",
+                style: "Lager",
+                ibu: "37"
+                /*toString: function(){
+                    return this.name
+                }*/
+            }
+        ]
+
+        // Ex 4., 5. e 6.
+        const carregarDiv = (cs, id = "cervejasDiv", cabecalho = ["Nome", "Álcool", "Estilo", "Amargor"], props = ["name", "alcohol", "style", "ibu"]) => {
+            const div = document.getElementById(id)
+            // Passo 4
+            //const itensHtml = cs.map(item => `<div>${item.name}</div>`)
+
+            // Passo 5
+            //const itensHtml = cs.map(({name, alcohol}) => `<div>${name} -- ${alcohol}</div>`)
+
+            // Passo 6
+            //const itensHtml = cs.map( item => `<div>${item['name']} -- ${item['alcohol']}</div>`)
+
+            // Ex 1. e 3.
+            const itensHtml = cs.map(item => `<tr>${props.map(p => `<td>${item[p] ?? ""}</td>`).join("")}</tr>`)
+            const cabecalhoHtml = cabecalho.map(item => `<th>${item}</th>`).join("\n")
+            div.innerHTML = `<table class="cerveja">
+                                <tr>
+                                    ${cabecalhoHtml}
+                                </tr>
+                                ${itensHtml.join("\n")}
+                            </table>`;
+        }
+
+        let botao = document.getElementById("botaoCarregar")
+        botao.addEventListener("click", () => carregarDiv(cervejas))
+    </script>
+</html>

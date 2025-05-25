@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Receita 5.1</title>
+</head>
+<body>
+    <!-- Passo 1 -->
+    <div id="meu amor">
+        <button id="botaoCarregar">Carregando cervejas...</button>
+    </div>
+
+    <script>
+        let cervejas = ["Guinness", "Heineken", "Budweiser", "Corona", "Stella Artois"];
+        
+        // Ex. 1
+        const carregarDiv = (cervs) => {
+            const div = document.getElementById("meu amor");
+            const cervejasHtml = cervs.map(item => `<h1>${item}</h1>`);
+            div.innerHTML = `${cervejasHtml.join("\n")}`;
+        }
+        // Passo 3
+        /*const carregarDiv = () => {
+            // Passo 2
+            const div = document.getElementById("meu amor");
+            // Passo 4
+            const cervejasHtml = cervejas.map(item => `<h1>${item}</h1>`);
+            div.innerHTML = `${cervejasHtml.join("\n")}`;
+        }*/
+
+
+        let botao = document.getElementById("botaoCarregar");
+        botao.addEventListener("click", () => carregarDiv(cervejas));
+    </script>
+</body>
+</html>

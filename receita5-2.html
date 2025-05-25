@@ -1,0 +1,76 @@
+<!-- Ex. 2 -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Receita 5.2</title>
+    <style>
+        .sorvete, tr, th, td {
+            background-color: coral;
+            color: white;
+            text-align: center;
+            border: 1px black solid;
+            border-collapse: collapse;
+        }
+        button {
+            background-color: rgb(236, 147, 147);
+            width: 100px;
+            height: 50px;
+            border: 0;
+            border-radius: 10px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="sorvetes">
+        <button id="botaoCarregar">Carregar Sorvetes</button>
+    </div>
+
+    <script>
+        let sorvetes = ["Chocolate", "Morango", "Menta", "Nata Goiaba", "Amendoim"];
+
+        const carregarDiv = (sorv) => {
+            const div = document.getElementById("sorvetes");
+            const sorvetesHtml = sorv.map(item => `<tr><td>${item}</td></tr>`);
+            div.innerHTML = `<table class="sorvete">
+                                <tr>
+                                    <th>Sorvete</th>
+                                </tr>
+                                ${sorvetesHtml.join("\n")}
+                            </table>
+                            <!-- Ex. 3 -->
+                            <a href="#" id="ordenar">Ordenar Sorvetes</a>
+                            <a href="#" id="embaralhar">Embaralhar Sorvetes</a>`;
+
+            let botaoOrdenar = document.getElementById("ordenar");
+            botaoOrdenar.addEventListener("click", (e) => {
+                e.preventDefault();
+                ordenar(sorvetes);
+            });
+
+            let botaoEmbaralhar = document.getElementById("embaralhar");
+            botaoEmbaralhar.addEventListener("click", (e) => {
+                e.preventDefault();
+                embaralhar()
+            })
+        }
+
+        const ordenar = (sorv) => {
+            sorv.sort();
+            carregarDiv(sorv);
+        }
+
+        const embaralhar = () => {
+            let random = Math.floor(Math.random() * sorvetes.length);
+            let sorvete = sorvetes[random]
+            sorvetes = sorvetes.filter(item => item !== sorvete);
+            sorvetes.push(sorvete);
+            carregarDiv(sorvetes);
+        }
+
+        let botao = document.getElementById("botaoCarregar");
+        botao.addEventListener("click", () => carregarDiv(sorvetes))
+    </script>
+</body>
+</html>

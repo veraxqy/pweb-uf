@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Receita 8</title>
+    <style>
+        .cerveja-table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        .cerveja-table th, .cerveja-table td {
+            background-color: coral;
+            color: white;
+            text-align: center;
+            border: 1px solid black;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div><button id="botaoCarregar">Carregando Cervejas...</button></div>
+    <div id="cervejasDiv"></div>
+
+    <script>
+        const carregarDiv = cervejas => {
+            const div = document.getElementById("cervejasDiv");
+            
+            const tabelaHTML = `
+                <table class="cerveja-table">
+                    <tr>
+                        <th>Id</th>
+                        <th>Nome</th>
+                        <th>Preço</th>
+                    </tr>
+                    ${cervejas.map(({ id, name, price }) => `
+                        <tr>
+                            <td>${id ?? 'N/A'}</td>
+                            <td>${name ?? 'N/A'}</td>
+                            <td>${price ?? 'N/A'}</td>
+                        </tr>
+                    `).join("")}
+                </table>
+            `;
+            div.innerHTML = tabelaHTML;
+        }
+
+        function carregarCervejas() {
+            const div = document.getElementById("cervejasDiv");
+            div.innerHTML = "Carregando...";
+
+            fetch("https://api.sampleapis.com/beers/ale")
+                .then(res => {
+                    if (!res.ok) throw new Error("Erro ao buscar dados");
+                    return res.json();
+                })
+                .then(data => {
+                    const cervejasSelecionadas = data.slice(0, 3);
+                    carregarDiv(cervejasSelecionadas);
+                })
+                .catch(error => {
+                    div.innerHTML = "Erro ao carregar cervejas: " + error.message;
+                });
+        }
+
+        document.getElementById("botaoCarregar").addEventListener("click", carregarCervejas);
+    </script>
+</body>
+</html>

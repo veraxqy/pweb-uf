@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>ReceitaReact - Classes</title>      
+   </head>
+   <body>
+      <div id="app">
+      </div>
+      <script src="libs/react.js"></script>
+      <script src="libs/react-dom.js"></script>
+      <script src="libs/babel.js"></script>
+      <script type="text/babel">
+
+        let cervejas = [
+            { 
+                name:"Guiness",
+                alcohol: "10%",
+                style: "Pilsen",
+                ibu: "29"
+            }, 
+            { 
+                name: "Desperados",
+                alcohol: "6%",
+                style: "Stout",
+                ibu: "56"
+            }, 
+            {
+                name: "Becks",
+                alcohol: "5%",
+                style: "Lager",
+                ibu: "37"
+            }
+        ];
+
+        // Passo 2, 3 e 5 
+        const TabelaBebidas = ({titulo, cabecalhos, props, dados}) =>{
+            return (
+                // Ex. 1
+                <div>
+                    <h1>{titulo}</h1>
+                    <table id="tabela" border="1">
+                        <thead>
+                            <tr>
+                                {cabecalhos.map((item, index) => <th key={index}>{item}</th>)}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {dados.map((item, index) => 
+                                <tr key={index}>
+                                    {props.map((p, i) => <td key={i}>{item[p]}</td>)}
+                                </tr>
+                            )}
+                        </tbody>
+                    </table>
+                </div>
+            )
+        }
+
+        // Passo 4
+        const valoresCabecalho = ["Nome", "Marca", "Estilo", "Amargor"];
+        const propsCerveja = ["name", "alcohol", "style", "ibu"];
+
+        ReactDOM.render(
+            <TabelaBebidas titulo="Tabela de Bebidas" cabecalhos={valoresCabecalho} props={propsCerveja} dados={cervejas}/>,
+            document.getElementById("app"))
+      </script>
+   </body>
+</html>

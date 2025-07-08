@@ -1,8 +1,13 @@
+import Link from 'next/link'
+
 export default function Home() {
     return (
         <div>
-            <div>Rota 1</div>
             <h1>Viva Santana!</h1>
+            <Link href="/rota1">Rota1</Link>
+            <Link href="/rota2">Rota2</Link>
+            <Link href="/novarota">Nova Rota</Link>
+            <a href="/novarota/rota3">Rota3</a>
         </div>
     )
 }

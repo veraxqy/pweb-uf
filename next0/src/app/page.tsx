@@ -1,6 +1,7 @@
 import Link from 'next/link'
 
-export default function Home() {
+export default async function Home() {
+    // Passo 3
     return (
         <div>
             <h1>Viva Santana!</h1>
@@ -8,6 +9,7 @@ export default function Home() {
             <Link href="/rota2">Rota2</Link>
             <Link href="/novarota">Nova Rota</Link>
             <a href="/novarota/rota3">Rota3</a>
+            <Link href="/movies">Filmes</Link>
         </div>
     )
 }

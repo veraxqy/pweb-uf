@@ -4,12 +4,16 @@ export const metadata = {
 }
 
 import { ReactNode } from 'react';
+import './clientMovies1/estilo.css';
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   // Passo 1
   console.log("Montando Layout")
   return (
     <html lang="en">
+      <head>
+        <link rel='stylesheet' href='./clientMovies1/estilo.css'/>
+      </head>
       <body>
         <div>
           {children}
